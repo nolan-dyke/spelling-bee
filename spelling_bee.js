@@ -8,12 +8,13 @@ function findValidWords(){
     const sortedAnswer = allLetters.sort()
     words.forEach(word => {
         let wordArray = word.split('')
-        if (wordArray.includes(centerLetter)){
+        if (wordArray.length >= 4 && wordArray.includes(centerLetter)){
             let uniqueChars = [...new Set(wordArray)].sort()
             let check = true
             for(let i = 0; i < uniqueChars.length; i++) {
-                if(uniqueChars[i] !== sortedAnswer[i]) {
+                if(!sortedAnswer.includes(uniqueChars[i])) {
                     check = false
+                    break
                 }
             }
             if (check){
@@ -21,7 +22,8 @@ function findValidWords(){
             }
         }
     })
-    console.log(result)
+    // console.log(result)
+    console.dir(result, {'maxArrayLength': null});
 }
 
 findValidWords()
